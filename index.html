@@ -45,17 +45,18 @@
       opacity: 0.4;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 200;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1.2rem 3rem;
-      background: rgba(240,244,249,0.90);
+      background: rgba(240,244,249,0.93);
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
       transition: box-shadow 0.3s;
     }
@@ -69,7 +70,36 @@
       color: var(--muted);
       text-transform: uppercase;
       text-decoration: none;
+      flex-shrink: 0;
     }
+
+    /* hamburger */
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      z-index: 201;
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.3s, opacity 0.3s;
+      transform-origin: center;
+    }
+
+    .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
     .nav-links {
       display: flex;
@@ -100,7 +130,7 @@
     .nav-links a:hover { color: var(--accent); }
     .nav-links a:hover::after { width: 100%; }
 
-    /* HERO */
+    /* ── HERO ── */
     #hero {
       min-height: 100vh;
       display: grid;
@@ -139,7 +169,7 @@
 
     .hero-name {
       font-family: var(--serif);
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
       line-height: 1.08;
       color: var(--ink);
       margin-bottom: 0.4rem;
@@ -185,6 +215,7 @@
       opacity: 0;
       transform: translateY(12px);
       animation: fadeUp 0.7s 0.8s forwards;
+      flex-wrap: wrap;
     }
 
     .btn {
@@ -200,6 +231,7 @@
       position: relative;
       overflow: hidden;
       font-weight: 500;
+      display: inline-block;
     }
 
     .btn::before {
@@ -241,7 +273,7 @@
       cursor: pointer;
     }
 
-    /* SECTION SHARED */
+    /* ── SECTION SHARED ── */
     section {
       padding: 6rem 3rem;
       max-width: 1200px;
@@ -266,11 +298,12 @@
       width: 2rem;
       height: 1px;
       background: var(--accent);
+      flex-shrink: 0;
     }
 
     .section-title {
       font-family: var(--serif);
-      font-size: clamp(1.9rem, 3vw, 2.8rem);
+      font-size: clamp(1.7rem, 3vw, 2.8rem);
       line-height: 1.15;
       color: var(--ink);
       margin-bottom: 3rem;
@@ -278,7 +311,7 @@
       letter-spacing: -0.02em;
     }
 
-    /* ABOUT */
+    /* ── ABOUT ── */
     #about { border-top: 1px solid var(--line); }
 
     .about-grid {
@@ -335,7 +368,7 @@
 
     .tag:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* EXPERIENCE */
+    /* ── EXPERIENCE ── */
     #experience { border-top: 1px solid var(--line); }
 
     .exp-tabs {
@@ -343,7 +376,11 @@
       border-bottom: 1px solid var(--line);
       margin-bottom: 2.5rem;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
+
+    .exp-tabs::-webkit-scrollbar { display: none; }
 
     .exp-tab {
       font-family: var(--mono);
@@ -410,12 +447,12 @@
       top: 0.05em;
     }
 
-    /* PROJECTS */
+    /* ── PROJECTS ── */
     #projects { border-top: 1px solid var(--line); }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
     }
 
@@ -459,11 +496,13 @@
 
     .project-footer {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
+      gap: 1rem;
       margin-top: 1.4rem;
       padding-top: 1rem;
       border-top: 1px solid var(--line);
+      flex-wrap: wrap;
     }
 
     .project-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; }
@@ -477,6 +516,12 @@
       color: var(--muted);
     }
 
+    .project-links {
+      display: flex;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
     .project-link {
       font-family: var(--mono);
       font-size: 0.68rem;
@@ -488,13 +533,13 @@
       align-items: center;
       gap: 0.3rem;
       transition: gap 0.2s;
-      flex-shrink: 0;
       font-weight: 500;
+      white-space: nowrap;
     }
 
     .project-link:hover { gap: 0.55rem; }
 
-    /* SKILLS */
+    /* ── SKILLS ── */
     #skills { border-top: 1px solid var(--line); }
 
     .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
@@ -532,7 +577,7 @@
 
     .skill-pill { font-family: var(--mono); font-size: 0.67rem; padding: 0.18rem 0.5rem; background: var(--bg); border: 1px solid var(--line); color: var(--ink2); }
 
-    /* PUBLICATIONS */
+    /* ── PUBLICATIONS ── */
     #publications { border-top: 1px solid var(--line); }
     .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
 
@@ -591,7 +636,7 @@
     }
     .pub-link:hover { gap: 0.5rem; }
 
-    /* EDUCATION */
+    /* ── EDUCATION ── */
     #education { border-top: 1px solid var(--line); }
     .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
@@ -615,7 +660,7 @@
     .edu-degree { font-size: 0.92rem; color: var(--ink2); margin-bottom: 0.7rem; }
     .edu-note { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.06em; }
 
-    /* CONTACT */
+    /* ── CONTACT ── */
     #contact {
       border-top: 1px solid var(--line);
       background: var(--ink);
@@ -636,7 +681,7 @@
     #contact .section-label { color: #5b9ee8; }
     #contact .section-label::before { background: #5b9ee8; }
 
-    .contact-title { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem); color: var(--bg); line-height: 1.15; margin-bottom: 1rem; font-weight: 700; letter-spacing: -0.02em; }
+    .contact-title { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 3rem); color: var(--bg); line-height: 1.15; margin-bottom: 1rem; font-weight: 700; letter-spacing: -0.02em; }
     .contact-title em { font-style: normal; color: #5b9ee8; }
     .contact-sub { color: rgba(240,244,249,0.6); font-size: 1rem; line-height: 1.75; }
 
@@ -655,10 +700,10 @@
 
     .contact-link:hover { border-color: #5b9ee8; background: rgba(29,95,173,0.12); }
 
-    .contact-link-icon { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; color: #5b9ee8; min-width: 70px; text-transform: uppercase; }
-    .contact-link-text { font-size: 0.93rem; color: rgba(240,244,249,0.8); }
+    .contact-link-icon { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; color: #5b9ee8; min-width: 70px; text-transform: uppercase; flex-shrink: 0; }
+    .contact-link-text { font-size: 0.93rem; color: rgba(240,244,249,0.8); word-break: break-word; }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       background: var(--ink);
       border-top: 1px solid rgba(240,244,249,0.08);
@@ -670,7 +715,7 @@
 
     footer p { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; color: rgba(240,244,249,0.3); }
 
-    /* ANIMATIONS */
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { to { opacity: 1; } }
 
@@ -681,25 +726,138 @@
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.2rem; }
-      #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; gap: 2rem; }
-      .hero-right { display: none; }
-      section { padding: 4rem 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .edu-grid { grid-template-columns: 1fr; }
-      .exp-entry { grid-template-columns: 1fr; gap: 0.5rem; }
-      #contact .inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+    /* ────────────────────────────────────────
+       RESPONSIVE BREAKPOINTS
+    ──────────────────────────────────────── */
+
+    /* Tablet: ≤ 1024px */
+    @media (max-width: 1024px) {
+      nav { padding: 1rem 2rem; }
+      .nav-links { gap: 1.4rem; }
+      #hero { padding: 7rem 2rem 4rem; gap: 2.5rem; }
+      section { padding: 5rem 2rem; }
+      .about-grid { gap: 3rem; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
+    /* Tablet / large mobile: ≤ 900px */
+    @media (max-width: 900px) {
+      /* Nav → hamburger */
+      nav { padding: 1rem 1.5rem; }
+
+      .nav-burger { display: flex; }
+
+      .nav-links {
+        position: fixed;
+        top: 0; right: 0;
+        width: min(280px, 80vw);
+        height: 100vh;
+        background: rgba(240,244,249,0.97);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        flex-direction: column;
+        gap: 0;
+        padding: 5rem 0 2rem;
+        border-left: 1px solid var(--line);
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+        box-shadow: -8px 0 32px rgba(13,27,46,0.08);
+        overflow-y: auto;
+      }
+
+      .nav-links.open { transform: translateX(0); }
+
+      .nav-links li { width: 100%; }
+
+      .nav-links a {
+        display: block;
+        padding: 0.9rem 2rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links a::after { display: none; }
+      .nav-links a:hover { color: var(--accent); background: var(--bg2); }
+
+      /* Hero → single column */
+      #hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.5rem 4rem;
+        gap: 2rem;
+        min-height: auto;
+        padding-bottom: 4rem;
+      }
+
+      .hero-right { display: none; }
+
+      .hero-desc { max-width: 100%; }
+
+      section { padding: 4rem 1.5rem; }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      /* Experience */
+      .exp-entry { grid-template-columns: 1fr; gap: 0.5rem; }
+      .exp-meta { display: flex; flex-direction: column; gap: 0.2rem; }
+
+      /* Skills */
+      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+      /* Education */
+      .edu-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+      /* Contact */
+      #contact { padding: 4rem 1.5rem; }
+      #contact .inner { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      /* Footer */
+      footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.5rem; }
+    }
+
+    /* Mobile: ≤ 600px */
     @media (max-width: 600px) {
+      nav { padding: 0.9rem 1.2rem; }
+
+      .hero-name { font-size: clamp(2rem, 9vw, 2.8rem); }
+      .hero-tagline { font-size: 1rem; }
+
+      section { padding: 3.5rem 1.2rem; }
+
+      .section-title { margin-bottom: 2rem; }
+
+      /* Skills → single col */
       .skills-grid { grid-template-columns: 1fr; }
-      .pub-card { grid-template-columns: 1fr; }
-      .pub-year { font-size: 1.4rem; }
+
+      /* Publications */
+      .pub-card { grid-template-columns: 1fr; gap: 0.5rem; }
+      .pub-year { font-size: 1.4rem; min-width: unset; }
+
+      /* Project footer stacks */
+      .project-footer { flex-direction: column; gap: 0.8rem; }
+      .project-links { flex-wrap: wrap; }
+
+      /* Exp role inline layout on small screens */
+      .exp-content > div { flex-direction: column; }
+      .exp-content > div .exp-period { margin-left: 0 !important; }
+
+      /* Contact */
+      #contact { padding: 3.5rem 1.2rem; }
+      .contact-link { padding: 0.8rem 1rem; gap: 0.8rem; }
+      .contact-link-icon { min-width: 58px; font-size: 0.65rem; }
+
+      /* Buttons full width on very small */
+      .hero-cta { flex-direction: column; }
+      .btn { text-align: center; }
+
+      footer { padding: 1.2rem; }
+    }
+
+    /* Very small: ≤ 380px */
+    @media (max-width: 380px) {
+      .hero-name { font-size: 1.9rem; }
+      .exp-tab { font-size: 0.65rem; padding: 0.6rem 0.9rem; letter-spacing: 0.04em; }
     }
   </style>
 </head>
@@ -708,7 +866,12 @@
   <!-- NAV -->
   <nav id="mainNav">
     <a href="#hero" class="nav-logo">JEG Lopez</a>
-    <ul class="nav-links">
+
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -750,10 +913,10 @@
           I am a Molecular Biology and Biotechnology student at the University of the Philippines - Diliman with a strong interest in computational biology, particularly in how evolutionary and mathematical modeling can be applied to understand dynamic biological systems.
         </p>
         <p>
-          I am especially drawn to cancer biology and infectious disease as domains where evolutionary frameworks and quantitative approaches can offer insights into disease progression and treatment dynamics.  
+          I am especially drawn to cancer biology and infectious disease as domains where evolutionary frameworks and quantitative approaches can offer insights into disease progression and treatment dynamics.
         </p>
         <p>
-         My computational experience includes building and deploying pipelines, utilizing server infrastructures, and applying tools for genomic, transcriptomic, and evolutionary analysis. I thrive in the process of solving biological questions through mathematical and computational approaches, and I am continually developing my skills across bioinformatics, systems biology, and data analysis.
+          My computational experience includes building and deploying pipelines, utilizing server infrastructures, and applying tools for genomic, transcriptomic, and evolutionary analysis. I thrive in the process of solving biological questions through mathematical and computational approaches, and I am continually developing my skills across bioinformatics, systems biology, and data analysis.
         </p>
         <p>
           Outside of research, I am involved in science outreach and community building, with experience in managing alumni relations and tutoring students in STEM, reflecting my belief that science and analysis is only meaningful if it is collaborative and accessible. Aside from the life sciences, I am also interested in utilizing data science for improving systems in healthcare and public policy.
@@ -857,69 +1020,68 @@
         </div>
       </div>
 
-<div id="tab-leadership">
-  <!-- UP Association of Biology Majors -->
-  <div class="exp-entry reveal">
-    <div class="exp-meta">
-      <div class="exp-org">University of the Philippines Association of Biology Majors</div>
-    </div>
-    <div class="exp-content">
-      <div style="margin-bottom: 0.25rem;">
-        <strong>Vice President for Alumni Relations</strong>
-        <span class="exp-period" style="margin-left: 0.5rem;">August 2024 – July 2025</span>
-      </div>
-      <div style="margin-bottom: 0.75rem;">
-        <strong>Alumni Relations Committee Member</strong>
-        <span class="exp-period" style="margin-left: 0.5rem;">September 2023 – July 2024, August 2025 – Present</span>
-      </div>
-      <ul>
-        <li>Served as the primary liaison for alumni relations, managing communication channels and implementing strategies that sustained their connection and support for the organization.</li>
-        <li>Spearheaded the logistical planning and execution for Career Talks with 50 attendees, ensuring smooth operations and maximizing alumni and student participation.</li>
-        <li>Led fundraising efforts that successfully secured ₱150,000 to host an improv show to improve alumni engagement with the organization.</li>
-        <li>Improved and maintained an alumni database to streamline communication and engagement efforts, facilitating targeted outreach of over 900 alumni.</li>
-      </ul>
-    </div>
-  </div>
+      <div id="tab-leadership">
+        <div class="exp-entry reveal">
+          <div class="exp-meta">
+            <div class="exp-org">University of the Philippines Association of Biology Majors</div>
+          </div>
+          <div class="exp-content">
+            <div style="margin-bottom: 0.25rem;">
+              <strong>Vice President for Alumni Relations</strong>
+              <span class="exp-period" style="margin-left: 0.5rem;">August 2024 – July 2025</span>
+            </div>
+            <div style="margin-bottom: 0.75rem;">
+              <strong>Alumni Relations Committee Member</strong>
+              <span class="exp-period" style="margin-left: 0.5rem;">September 2023 – July 2024, August 2025 – Present</span>
+            </div>
+            <ul>
+              <li>Served as the primary liaison for alumni relations, managing communication channels and implementing strategies that sustained their connection and support for the organization.</li>
+              <li>Spearheaded the logistical planning and execution for Career Talks with 50 attendees, ensuring smooth operations and maximizing alumni and student participation.</li>
+              <li>Led fundraising efforts that successfully secured ₱150,000 to host an improv show to improve alumni engagement with the organization.</li>
+              <li>Improved and maintained an alumni database to streamline communication and engagement efforts, facilitating targeted outreach of over 900 alumni.</li>
+            </ul>
+          </div>
+        </div>
 
-  <!-- UP Data Science Society -->
-  <div class="exp-entry reveal">
-    <div class="exp-meta">
-      <div class="exp-org">University of the Philippines Data Science Society</div>
-    </div>
-    <div class="exp-content">
-      <div style="margin-bottom: 0.25rem;">
-        <strong>Philippine Junior Data Science Convention Externals Manager</strong>
-        <span class="exp-period" style="margin-left: 0.5rem;">July 2024 – July 2025</span>
-      </div>
-      <div style="margin-bottom: 0.75rem;">
-        <strong>Vice Director for Mentorships</strong>
-        <span class="exp-period" style="margin-left: 0.5rem;">February 2026 – Present</span>
-      </div>
-      <ul>
-        <li>Cultivated partnerships with organizations including GlobalCo, DICT, and DOTr for the Philippine Junior Data Science Convention.</li>
-        <li>Collaborated with internal committees to align external partnerships with promotional efforts.</li>
-        <li>Developed the final financial report for stakeholders.</li>
-        <li>Coordinate external partnerships and stakeholder engagements to deliver workshops that foster skill development.</li>
-      </ul>
-    </div>
-  </div>
+        <div class="exp-entry reveal">
+          <div class="exp-meta">
+            <div class="exp-org">University of the Philippines Data Science Society</div>
+          </div>
+          <div class="exp-content">
+            <div style="margin-bottom: 0.25rem;">
+              <strong>Philippine Junior Data Science Convention Externals Manager</strong>
+              <span class="exp-period" style="margin-left: 0.5rem;">July 2024 – July 2025</span>
+            </div>
+            <div style="margin-bottom: 0.75rem;">
+              <strong>Vice Director for Mentorships</strong>
+              <span class="exp-period" style="margin-left: 0.5rem;">February 2026 – Present</span>
+            </div>
+            <ul>
+              <li>Cultivated partnerships with organizations including GlobalCo, DICT, and DOTr for the Philippine Junior Data Science Convention.</li>
+              <li>Collaborated with internal committees to align external partnerships with promotional efforts.</li>
+              <li>Developed the final financial report for stakeholders.</li>
+              <li>Coordinate external partnerships and stakeholder engagements to deliver workshops that foster skill development.</li>
+            </ul>
+          </div>
+        </div>
 
-  <!-- STEM Tutor -->
-  <div class="exp-entry reveal">
-    <div class="exp-meta">
-      <div class="exp-period">Sep 2021 – Present</div>
-      <div class="exp-org">Independent</div>
+        <div class="exp-entry reveal">
+          <div class="exp-meta">
+            <div class="exp-period">Sep 2021 – Present</div>
+            <div class="exp-org">Independent</div>
+          </div>
+          <div class="exp-content">
+            <h3>STEM Tutor</h3>
+            <ul>
+              <li>Provided pro bono tutoring in Mathematics and Science to 6 students.</li>
+              <li>Designed tailored learning resources to reinforce classroom learning and address specific challenges.</li>
+              <li>Employed collaborative tutoring approaches to foster student understanding and success.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="exp-content">
-      <h3>STEM Tutor</h3>
-      <ul>
-        <li>Provided pro bono tutoring in Mathematics and Science to 6 students.</li>
-        <li>Designed tailored learning resources to reinforce classroom learning and address specific challenges.</li>
-        <li>Employed collaborative tutoring approaches to foster student understanding and success.</li>
-      </ul>
-    </div>
-  </div>
-</div>
+  </section>
 
   <!-- PROJECTS -->
   <section id="projects">
@@ -941,13 +1103,9 @@
             <span class="project-pill">Classification</span>
             <span class="project-pill">Python</span>
           </div>
-          <div style="display: flex; gap: 1rem;">
-            <a href="https://github.com/josephlopez205/kidneystone" target="_blank" rel="noopener" class="project-link">
-              GitHub →
-            </a>
-            <a href="https://kidneystone-d8l1.onrender.com" target="_blank" rel="noopener" class="project-link">
-              Live Demo →
-            </a>
+          <div class="project-links">
+            <a href="https://github.com/josephlopez205/kidneystone" target="_blank" rel="noopener" class="project-link">GitHub →</a>
+            <a href="https://kidneystone-d8l1.onrender.com" target="_blank" rel="noopener" class="project-link">Live Demo →</a>
           </div>
         </div>
       </div>
@@ -968,13 +1126,9 @@
             <span class="project-pill">SVM</span>
             <span class="project-pill">Classification</span>
           </div>
-          <div style="display: flex; gap: 1rem;">
-            <a href="https://github.com/josephlopez205/brcaimpedance" target="_blank" rel="noopener" class="project-link">
-              GitHub →
-            </a>
-            <a href="https://josephlopez05.shinyapps.io/impedance/" target="_blank" rel="noopener" class="project-link">
-              Live Demo →
-            </a>
+          <div class="project-links">
+            <a href="https://github.com/josephlopez205/brcaimpedance" target="_blank" rel="noopener" class="project-link">GitHub →</a>
+            <a href="https://josephlopez05.shinyapps.io/impedance/" target="_blank" rel="noopener" class="project-link">Live Demo →</a>
           </div>
         </div>
       </div>
@@ -1067,7 +1221,6 @@
     <div class="section-label">Publications</div>
     <h2 class="section-title reveal">Manuscripts</h2>
     <div class="pub-list">
-
       <div class="pub-card reveal">
         <div class="pub-year">2026</div>
         <div class="pub-details">
@@ -1076,7 +1229,6 @@
           <span class="pub-badge prep">In Preparation</span>
         </div>
       </div>
-
       <div class="pub-card reveal">
         <div class="pub-year">2021</div>
         <div class="pub-details">
@@ -1089,7 +1241,6 @@
           </a>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -1123,7 +1274,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" style="max-width:100%;padding:5rem 3rem;">
+  <section id="contact" style="max-width:100%;">
     <div class="inner">
       <div>
         <div class="section-label">Contact</div>
@@ -1161,13 +1312,44 @@
   </footer>
 
   <script>
-    // NAV SCROLL
+    // ── NAV SCROLL ──
     const nav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     });
 
-    // EXPERIENCE TABS
+    // ── HAMBURGER ──
+    const burger = document.getElementById('navBurger');
+    const navLinks = document.getElementById('navLinks');
+
+    burger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      burger.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // Close on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target) && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ── EXPERIENCE TABS ──
     const tabs = document.querySelectorAll('.exp-tab');
     const panels = document.querySelectorAll('.exp-panels > div');
     tabs.forEach(tab => {
@@ -1180,7 +1362,7 @@
       });
     });
 
-    // SCROLL REVEAL
+    // ── SCROLL REVEAL ──
     const reveals = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
@@ -1191,7 +1373,7 @@
     }, { threshold: 0.08 });
     reveals.forEach(el => revealObserver.observe(el));
 
-    // HERO CANVAS
+    // ── HERO CANVAS ──
     const canvas = document.getElementById('heroCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -1237,7 +1419,6 @@
 
     canvas.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
 
-    // Click: illuminate the nearest node within 60px
     canvas.addEventListener('click', e => {
       const rect = canvas.getBoundingClientRect();
       const cx = e.clientX - rect.left;
@@ -1265,7 +1446,6 @@
         if (n.y < 0 || n.y > h) n.vy *= -1;
         if (n.lit && now - n.litTime > LIT_DURATION) n.lit = false;
 
-        // Mouse repulsion
         const dx = n.x - mouse.x, dy = n.y - mouse.y;
         const dist = Math.hypot(dx, dy);
         if (dist < 80 && dist > 0) {
@@ -1276,7 +1456,6 @@
         }
       });
 
-      // Edges
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
@@ -1301,15 +1480,12 @@
         }
       }
 
-      // Nodes
       nodes.forEach(n => {
         const pulse = Math.sin(n.pulse) * 0.5 + 0.5;
         const r = n.r + pulse * 1.2;
 
         if (n.lit) {
           const t = Math.max(0, 1 - (now - n.litTime) / LIT_DURATION);
-
-          // Outer glow burst
           const glowR = r * (3.5 + t * 5);
           const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, glowR);
           grad.addColorStop(0, `rgba(180,215,255,${0.85 * t})`);
@@ -1320,21 +1496,18 @@
           ctx.fillStyle = grad;
           ctx.fill();
 
-          // Expanding ring
           ctx.beginPath();
           ctx.arc(n.x, n.y, r + t * 7, 0, Math.PI * 2);
           ctx.strokeStyle = `rgba(91,158,232,${0.55 * t})`;
           ctx.lineWidth = 1.5;
           ctx.stroke();
 
-          // Bright core
           ctx.beginPath();
           ctx.arc(n.x, n.y, r * (1 + t * 1.4), 0, Math.PI * 2);
           ctx.fillStyle = `rgba(210,232,255,${0.9 + 0.1 * t})`;
           ctx.globalAlpha = 1;
           ctx.fill();
         } else {
-          // Normal glow
           const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 3.5);
           grad.addColorStop(0, n.color + '44');
           grad.addColorStop(1, 'transparent');
