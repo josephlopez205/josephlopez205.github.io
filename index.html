@@ -496,13 +496,11 @@
 
     .project-footer {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
+      flex-direction: column;
+      gap: 0.9rem;
       margin-top: 1.4rem;
       padding-top: 1rem;
       border-top: 1px solid var(--line);
-      flex-wrap: wrap;
     }
 
     .project-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; }
@@ -834,8 +832,6 @@
       .pub-card { grid-template-columns: 1fr; gap: 0.5rem; }
       .pub-year { font-size: 1.4rem; min-width: unset; }
 
-      /* Project footer stacks */
-      .project-footer { flex-direction: column; gap: 0.8rem; }
       .project-links { flex-wrap: wrap; }
 
       /* Exp role inline layout on small screens */
