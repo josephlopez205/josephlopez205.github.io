@@ -574,66 +574,6 @@
     .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
     .skill-pill { font-family: var(--mono); font-size: 0.67rem; padding: 0.18rem 0.5rem; background: var(--bg); border: 1px solid var(--line); color: var(--ink2); }
-
-    /* ── PUBLICATIONS ── */
-    #publications { border-top: 1px solid var(--line); }
-    .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
-
-    .pub-card {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1.5rem;
-      padding: 1.6rem;
-      background: var(--bg2);
-      border: 1px solid var(--line);
-      transition: transform 0.2s;
-    }
-
-    .pub-card:hover { transform: translateX(4px); }
-
-    .pub-year {
-      font-family: var(--mono);
-      font-size: 2rem;
-      color: var(--accent);
-      opacity: 0.22;
-      line-height: 1;
-      align-self: start;
-      min-width: 60px;
-      font-weight: 700;
-    }
-
-    .pub-details h4 { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); margin-bottom: 0.4rem; line-height: 1.45; font-weight: 600; }
-    .pub-details p { font-size: 0.88rem; color: var(--muted); font-family: var(--mono); }
-
-    .pub-badge {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.15rem 0.5rem;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      margin-top: 0.5rem;
-    }
-
-    .pub-badge.prep { border-color: var(--accent2); color: var(--accent2); }
-
-    .pub-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
-      color: var(--accent);
-      text-decoration: none;
-      margin-top: 0.6rem;
-      font-weight: 500;
-      transition: gap 0.2s;
-    }
-    .pub-link:hover { gap: 0.5rem; }
-
     /* ── EDUCATION ── */
     #education { border-top: 1px solid var(--line); }
     .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -828,12 +768,6 @@
       /* Skills → single col */
       .skills-grid { grid-template-columns: 1fr; }
 
-      /* Publications */
-      .pub-card { grid-template-columns: 1fr; gap: 0.5rem; }
-      .pub-year { font-size: 1.4rem; min-width: unset; }
-
-      .project-links { flex-wrap: wrap; }
-
       /* Exp role inline layout on small screens */
       .exp-content > div { flex-direction: column; }
       .exp-content > div .exp-period { margin-left: 0 !important; }
@@ -872,7 +806,6 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#publications">Publications</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
